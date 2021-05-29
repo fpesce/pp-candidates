@@ -10,12 +10,14 @@ import (
 
 var wordlist string
 var separator string
+var minWords int
 var maxWords int
 var maxLength int
 
 func init() {
 	flag.StringVar(&wordlist, "w", "", "wordlist to generate pass from")
 	flag.StringVar(&separator, "s", "", "separator between words")
+	flag.IntVar(&minWords, "m", 4, "minimum number of words in the pass phrase")
 	flag.IntVar(&maxWords, "n", 4, "maximum number of words in the pass phrase")
 	flag.IntVar(&maxLength, "l", 64, "maximum length of the generated passphrase")
 }
@@ -53,5 +55,7 @@ func main() {
 	for scanWl.Scan() {
 		words = append(words, scanWl.Text())
 	}
-	recurse("", words, maxWords)
+	for i := minWords; i <= maxWords; i++ {
+		recurse("", words, i)
+	}
 }

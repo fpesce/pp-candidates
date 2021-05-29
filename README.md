@@ -1,3 +1,4 @@
+```
 $ pp-candidates -h
 Usage of ./pp-candidates:
   -l int
@@ -11,3 +12,4 @@ Usage of ./pp-candidates:
 
 
 $ pp-candidates -n 4 -l 20 -w test.txt
+```

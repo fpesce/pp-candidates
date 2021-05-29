@@ -11,6 +11,7 @@ import (
 var avoidDoublon bool
 var wordlist string
 var separator string
+var endOfPhrase string
 var minWords int
 var maxWords int
 var maxLength int
@@ -19,6 +20,7 @@ func init() {
 	flag.BoolVar(&avoidDoublon, "a", false, "avoid phrase with twice the same word")
 	flag.StringVar(&wordlist, "w", "", "wordlist to generate pass from")
 	flag.StringVar(&separator, "s", "", "separator between words")
+	flag.StringVar(&endOfPhrase, "e", "", "add a last string/char to every phrases")
 	flag.IntVar(&minWords, "m", 4, "minimum number of words in the pass phrase")
 	flag.IntVar(&maxWords, "n", 4, "maximum number of words in the pass phrase")
 	flag.IntVar(&maxLength, "l", 64, "maximum length of the generated passphrase")
@@ -34,7 +36,7 @@ func recurse(prefix string, words []string, wordPresence []bool, depth int) {
 				wordPresence[i] = true
 			}
 			if depth == 1 {
-				output := prefix + separator + w
+				output := prefix + separator + w + endOfPhrase
 				if len(output) <= maxLength {
 					fmt.Println(output)
 				}

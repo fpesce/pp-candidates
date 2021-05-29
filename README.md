@@ -1,8 +1,13 @@
 ```
 $ pp-candidates -h
 Usage of ./pp-candidates:
+  -a    avoid phrase with twice the same word
+  -e string
+        add a last string/char to every phrases
   -l int
         maximum length of the generated passphrase (default 64)
+  -m int
+        minimum number of words in the pass phrase (default 4)
   -n int
         maximum number of words in the pass phrase (default 4)
   -s string
@@ -10,6 +15,5 @@ Usage of ./pp-candidates:
   -w string
         wordlist to generate pass from
 
-
-$ pp-candidates -n 4 -l 20 -w test.txt
+$ ./pp-candidates -w test.txt -a -s " " -l 43 -n 8 -e "!"
 ```
